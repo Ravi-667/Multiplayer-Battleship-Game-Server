@@ -3,12 +3,16 @@ import { Game } from '../game/Game.js';
 import { Player } from '../game/Player.js';
 import { EVENTS, GAME_STATE } from '../../shared/constants.js';
 
+/**
+ * Manages game rooms and player matchmaking.
+ * Handles incoming socket events and routes them to the appropriate Game instance.
+ */
 export class RoomManager {
   constructor(io) {
     this.io = io;
-    this.rooms = new Map(); // gameId -> Game
-    this.players = new Map(); // socketId -> Player
-    this.waitingQueue = [];
+    this.rooms = new Map(); // gameId -> Game (Active games)
+    this.players = new Map(); // socketId -> Player (Connected players)
+    this.waitingQueue = []; // Players waiting for a match
   }
 
   handleConnection(socket) {

@@ -1,5 +1,9 @@
 import { BOARD_SIZE, CELL_STATE, ORIENTATION } from '../../shared/constants.js';
 
+/**
+ * Represents a single player's board.
+ * Manages the grid state, ship placement, and attack validation.
+ */
 export class Board {
   constructor() {
     this.size = BOARD_SIZE;
